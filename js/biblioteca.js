@@ -104,8 +104,8 @@ formFiltrado.addEventListener('change', () => {
 
     // Recorremos todos los "libro" del array biblioteca con las siguientes condiciones:
     // Si la categoria tiene el valor "todo" o (||) se corresponde con la clave 'categoria' del objeto, 
-    // Y ADEMAS (&&) el idioma tiene el valor "todo" o (||) se corresponde con la clave 'idioma' 
-    // Y ADEMAS (&&) la epoca tiene el valor "todo" o (||) se corresponde con la clave 'epoca';
+    // Y ADEMAS (&&) el idioma tiene el valor "todo" o (||) se corresponde con la clave 'idioma' del objeto,
+    // Y ADEMAS (&&) la epoca tiene el valor "todo" o (||) se corresponde con la clave 'epoca' del objeto;
     // Se añadira el texto a la variable htmlText2
     biblioteca.forEach((libro) => {
         if ((categoria == "todo" || libro.categoria == categoria) && (idioma == "todo" || libro.idioma == idioma) && (epoca == "todo" || libro.epoca == epoca) ) {
@@ -131,7 +131,7 @@ formFiltrado.addEventListener('change', () => {
 
 // Creamos una constante que nos permite acceder al formulario
 const formAutor = document.forms['form-autor']
-// Creamos una constante que nos permita acceder al #ejercicio4 que es un <div>
+// Creamos una constante que nos permita acceder al #ejer3 que es un <div>
 const ejer3 = document.getElementById("ejer3")
 
 // Definimos un evento que se accione al activar el submit del formulario, y con el parámetro e, para poder hacer un preventDefault y que no se recargue la página como viene predefinido al hacer submit.
@@ -143,7 +143,7 @@ formAutor.addEventListener('submit', (e) => {
     // Definimos la variable autor como el valor -en minusculas- del campo 'autor' del formulario.
     // Esto se hace para poder comparar correctamente los valores por la distinción entre mayúsculas y minúsculas. Después pasaremos el mismo dato, pero del objeto libros tambien a minúsculas.
     let autor = formAutor['autor'].value.toLowerCase()
-    // Comenzamos a definir el texto que irá en el div ejer2, empezando por la etiqueta de lista ordenada
+    // Comenzamos a definir el texto que irá en el div ejer3, empezando por la etiqueta de lista ordenada
     let htmlText3 = "<ol>"
     // Definimos una variable que por defecto es true, para indicar que no hay resultados que coincidan con la busqueda
     let noHayResultados = true
@@ -202,7 +202,7 @@ incluirObra.addEventListener('submit', (e) => {
     biblioteca.push(valores)
     // Ejecutamos mostrarLibros (que actualizará la lista y la ordenará,aparte de mostrarla ) en el ejer1
      mostrarLibros("ejer1")
-    // Guardamos el array `biblioteca` en el almacenamiento local del navegador (`localStorage`), convertido en un string JSON con `JSON.stringify` para que pueda ser almacenado.
+    // Guardamos el array `biblioteca` en el almacenamiento local del navegador (`localStorage`) bajo el parámetro "biblioteca" para identificarlo, convertido en un string JSON con `JSON.stringify` para que pueda ser almacenado.
     localStorage.setItem("biblioteca", JSON.stringify(biblioteca))
 
     //MODIFICACION PARA EL EJERCICIO 5
