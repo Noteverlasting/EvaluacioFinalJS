@@ -225,6 +225,10 @@ const formQuitarObra = document.forms['formQuitarObra']
 
 //En este caso debemos separar del evento formQuitarObra la funcion actualizarLibros para actualizar el valor del campo <select> cada vez que se añada o quite un objeto 'libro'.
 function actualizarLibros() {
+    // Añadimos el sort para ordenar los libros en el mismo orden que aparecen en la lista del ejercicio1 (alfabetico, español y con numerales)
+    biblioteca.sort((a, b) => {
+        return a.titulo.localeCompare(b.titulo, "es-ES", { numeric: true });
+    });
     // Almacenamos en la variable selectObra el contenido del elemento con id selectObra (en este caso un <select>)
     const selectObra = document.getElementById('selectObra');
     // Limpiamos el innerHTML de selectObra para evitar acumulaciones y repeticiones
