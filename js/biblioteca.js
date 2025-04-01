@@ -56,11 +56,22 @@ function mostrarLibros(id) {
     // Creamos una variable para ir almacenando el texto que se mostrará en la lista, primero, y como es una parte fija, definimos la etiqueta de lista ordenada
     let htmlText = "<ol>"
 
-    // Recorremos el array biblioteca con el bucle forEach, procesando cada objeto como "libro"
-    biblioteca.forEach((libro) => { 
-        // Creamos el texto que se mostrará en la lista y lo añadimos.
-        htmlText += `<li><span>${libro.titulo}</span>, autor: <span>${libro.autor}</span>, categoria <span>${libro.categoria}</span>, en idioma ${libro.idioma} y su época es ${libro.epoca}</li>`;
-        });
+    // Recorremos el array biblioteca con el bucle forEach, procesando cada objeto como "libro", para crear un texto que se mostrará después en el HTML.
+    biblioteca.forEach((libro) => {
+        if (id === "ejer1") {
+            // Si el id es "ejer1", mostramos los datos en líneas separadas para mejor lectura
+            htmlText += `
+                <li>
+                    <p><span id="libroTituloUNO"> ${libro.titulo}</p>
+                    <p><strong>autor:</strong> ${libro.autor}</p>
+                    <p><strong>categoría:</strong> ${libro.categoria}</p>
+                    <p><strong>idioma:</strong> ${libro.idioma}</p>
+                    <p><strong>época:</strong> ${libro.epoca}</p>
+                </li>`;
+        } else {
+        // Si no se cumple que el id es "ejer1" se añade el siguiente mensaje a htmlText
+        htmlText += `<li><span id="libroTitulo">${libro.titulo}</span>, autor: <span>${libro.autor}</span>, categoria <span>${libro.categoria}</span>, en idioma ${libro.idioma} y su época es ${libro.epoca}</li>`;
+        }});
     
     //Cerramos la linea de texto añadiendo etiqueta de cierre de lista ordenada
     htmlText += "</ol>"
@@ -109,7 +120,7 @@ formFiltrado.addEventListener('change', () => {
     // Se añadira el texto a la variable htmlText2
     biblioteca.forEach((libro) => {
         if ((categoria == "todo" || libro.categoria == categoria) && (idioma == "todo" || libro.idioma == idioma) && (epoca == "todo" || libro.epoca == epoca) ) {
-            htmlText2 += `<li><span>${libro.titulo}</span>, autor: <span>${libro.autor}</span>, categoria <span>${libro.categoria}</span>, en idioma ${libro.idioma} y su época es ${libro.epoca}</li>`; 
+            htmlText2 += `<li><span id="libroTitulo">${libro.titulo}</span>, autor: <span>${libro.autor}</span>, categoria <span>${libro.categoria}</span>, en idioma ${libro.idioma} y su época es ${libro.epoca}</li>`; 
         }
     })
 
@@ -157,7 +168,7 @@ formAutor.addEventListener('submit', (e) => {
             //1 - noHayResultados sea false
             noHayResultados = false
             //2- la variable htmlText3 añada el siguiente texto a su valor
-            htmlText3 += `<li>${libro.autor}: ${libro.titulo} (${libro.categoria}, idioma: ${libro.idioma}, época: ${libro.epoca})</li>`
+            htmlText3 += `<li><span id="libroTitulo">${libro.autor}</span>: ${libro.titulo} (${libro.categoria}, idioma: ${libro.idioma}, época: ${libro.epoca})</li>`
         }
 
     })
